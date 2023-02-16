@@ -349,24 +349,20 @@ time_t RV8803C7_get_epoch(void)
     return(mktime(&sys_time));
 }
 
-/*uint32_t RV8803C7::get_hundredth_secs(void)
+uint8_t RV8803C7_get_hundredth_secs(void)
 {
-    uint16_t rtn_val = 1;
-    uint32_t hundredth_sec = 0;
+	HAL_StatusTypeDef rtn_val = HAL_ERROR;
+    uint8_t hundredth_sec = 0;
     uint8_t data[1];
     
-    data[0] = SECONDS_100TH;
-    rtn_val = write(w_adrs, (const char*) data, 1);
+    rtn_val = HAL_I2C_Mem_Read(&hi2c1, RV8803C7_I2C_ADRS << 1, 0x10, 1, data, 1, 1000);
     
-    if(!rtn_val)
+    if(rtn_val == HAL_OK)
     {
-        rtn_val = read(r_adrs,(char *) data, 1);
-        
-        hundredth_sec = bcd_2_uchar(data[0]);
-        
+        hundredth_sec = bcdToDec(data[0]);
     } 
   
     return(hundredth_sec);
 }
-*/
+
 
