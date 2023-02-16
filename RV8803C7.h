@@ -152,6 +152,6 @@ HAL_StatusTypeDef RV8803C7_get_calendar (RV8803C7_calendar_t* calendar);
 **************************************************************/
 time_t RV8803C7_get_epoch(void);
         
-uint8_t RV8803C7_get_hundredth_secs(void);
+uint32_t RV8803C7_get_hundredth_secs(void);
         
 #endif /* RV8803C7_H*/

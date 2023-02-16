@@ -337,7 +337,7 @@ time_t RV8803C7_get_epoch(void)
     sys_time.tm_sec = rtc_time.seconds;
     
     if(rtc_time.seconds == 59){
-        get_time(&rtc_time);
+    	RV8803C7_get_time(&rtc_time);
         
         sys_time.tm_hour = rtc_time.hours;
         sys_time.tm_min = rtc_time.minutes;
@@ -349,7 +349,7 @@ time_t RV8803C7_get_epoch(void)
     return(mktime(&sys_time));
 }
 
-uint8_t RV8803C7_get_hundredth_secs(void)
+uint32_t RV8803C7_get_hundredth_secs(void)
 {
 	HAL_StatusTypeDef rtn_val = HAL_ERROR;
     uint8_t hundredth_sec = 0;
